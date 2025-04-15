@@ -1,0 +1,1148 @@
+\documentclass{article}
+
+\usepackage{kotex}
+\usepackage[version=4]{mhchem} % Formula subscripts using \ce{}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{comment}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{svg}
+\svgpath{{images/}}
+\usepackage{amsmath}% For the equation* environment
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{parskip}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepgfplotslibrary{external}
+\tikzexternalize
+\usepackage{braket}
+
+% Make the font size consistent
+\renewcommand{\baselinestretch}{1.5}  % Line spacing
+\setlength{\parskip}{10pt plus 2pt minus 2pt}  % Set space between paragraphs
+
+
+
+\begin{document}
+
+\title{해석개론}
+\author{Yeryang Kang}
+\date{February 20-21, 2025}
+\maketitle
+
+\section{실직선의 위상}
+
+어떤 집합에서 그 집합의 임의의 두 원소 사이에 적당한 방법으로 원근 관계가 정의되어 있을 때 이 집합 위에 위상적 구조가 주어져 있다고 말한다. 실직선 R에서 두 점 사이의 거리를 이용하여 R의 두 원소 사이에 원근 관계를 정의할 수 있으므로, 실직선 R 위에는 위상적 구조가 주어져 있는 것이다. 
+
+실수 집합 R에 부여될 수 있는 여러 구조 중, 학부 실해석학에서 가장 중요하게 사용되는 세 가지 구조는 대수적 구조, 순서구조, 위상적 구조이다. R의 간단한 위상적 구조를 공부하는 것에 대하여는 첫째로, 실수계 자체의 구조를 좀더 깊이 이해할 수 있으며 둘째로는 R의 위상적 성질을 바탕으로 하여 극한 및 연속성의 개념을 좀더 명확히 파악할 수 있는 기틀을 마련할 수 있다는 장점이 있다.
+
+\subsection*{keywords}
+
+근방, 개집합, 내점과 집적점, 개집합 폐집합의 특성화, 볼차노 바이어슈트라스 정리, 하이네 보렐 정리, R의 부분집합의 연결성
+
+
+
+\subsection*{\textmd{1.1.1 개집합, 폐집합 정의}}
+실수의 집합 $\mathbb{R}$의 부분집합 $O$의 각 점 $x \in O$에 대하여, 이에 대응하는 적당한 $\epsilon > 0$이 존재하여 $N(x, \epsilon) \subset O$가 될 때, 집합 $O$를 \textit{개집합 (open set)}이라고 한다. 또 부분집합 $F \subset \mathbb{R}$의 여집합 $F^c$가 개집합이 될 때, 집합 $F$를 \textit{폐집합 (closed set)}이라고 한다.
+
+
+
+\subsection*{\textmd{1.2.1 내점, 집적점 정의}}
+ 점 $a$가 $S \subseteq \mathbb{R}$에 대하여 이에 대응하는 적당한 $\epsilon > 0$이 존재하여 $N(a, \epsilon) \subseteq S$가 될 때, 점 $a$를 $S$의 \textit{내점 (interior point)}이라고 한다.
+\textbf $S$가 $\mathbb{R}$의 부분집합이라 하고 $a$가 $\mathbb{R}$의 원소라고 하자. 임의의 $\epsilon$ 근방에 대하여 $(S \setminus \{a\}) \cap N(a, \epsilon) \neq \varnothing$일 때, 즉 $a$의 임의의 $\epsilon$ 근방 $N(a, \epsilon)$이 점 $a$와 다른 점 $x \in S$를 적어도 하나 포함할 때, 점 $a$를 $S$의 \textit{집적점 (accumulation point)}이라고 한다.
+
+
+\subsection*{\textmd{1.2.2 개집합의 특성화, 폐집합의 특성화(\overline{F}= F)}}
+집합 $O \subseteq \mathbb{R}$가 개집합일 필요충분조건은 각 점 $x \in O$가 $O$의 내점이 되는 것이다.
+집합 $F \subseteq \mathbb{R}$가 폐집합일 필요충분조건은 $F$의 도집합 $F'$이 $F$의 부분집합인 것이다. 또한 이는 $F = \overline{F}$와 동치이다.
+
+
+\bigskip
+다음의 세 정리는 서로 동치이다. 이는 실수집합의 완비성에서 비롯된 성질로 이들은 특히 각각 정리의 증명, 공리로서의 역할, 실수를 구성하는 한 방법으로서 그 의미가 있다.
+\subsection*{\textmd{1.3.1 축소구간정리-데데킨트정리-완비성공리 (TFAE)}}
+\textbf{축소구간 정리} \\
+폐구간열 $\{I_n\}$에 있어서 모든 자연수 $n$에 대하여 $I_n$이 유계이고, $I_n \supseteq I_{n+1}$인 경우, 
+$$ \bigcap_{n=1}^{\infty} I_n \neq \varnothing $$ 
+이 성질을 만족한다.
+
+\textbf{완비성 공리} \\
+$\mathbb{R}$의 공집합이 아닌 부분집합 $S$가 위로 유계이면, 반드시 그 상한이 존재한다.
+
+\bigskip
+\textbf{데데킨트 정리} \\
+$\mathbb{R}$의 두 부분집합 $A$와 $B$가 다음의 성질을 만족한다고 하자:
+\begin{enumerate}
+    \item $A \cup B = \mathbb{R}$
+    \item $A \neq \varnothing$, $B \neq \varnothing$
+    \item 임의의 $a \in A$, $b \in B$에 대해 $a < b$
+\end{enumerate}
+이때 임의의 $a \in A$, $b \in B$에 대해, $a \leq \alpha$이고 $\alpha \leq b$인 유일한 $\alpha \in \mathbb{R}$이 존재한다.
+
+
+
+
+\subsection*{\textmd{1.3.2 (corollary) 볼차노 바이어슈트라스 정리}}
+유계인 임의의 무한집합 $S$는 반드시 적어도 하나의 집적점을 가진다.
+
+
+
+
+\subsection*{\textmd{1.4.1 covering(피복)- open, finite의 정의}}
+집합 $E$를 실수 집합 $\mathbb{R}$의 부분집합이라 하자.  
+집합족 $\mathscr{C} = \{ O_\alpha \mid \alpha \in I \}$가  
+\[
+E \subseteq \bigcup_{\alpha \in I} O_\alpha
+\]
+를 만족하면, 즉, $E$의 임의의 점 $x \in E$에 대하여 $x \in O_\alpha$인 $\mathscr{C}$의 원소 $O_\alpha$가 적어도 하나 존재하면,  
+집합족 $\mathscr{C}$를 **$E$의 피복 (covering of $E$)**이라고 한다.
+
+특히, $\mathscr{C}$의 각 원소 $O_\alpha \ (\alpha \in I)$가 개집합이면, $\mathscr{C}$를 **$E$의 개피복 (open covering)**이라고 한다.
+
+집합족 $\mathscr{C}$의 부분집합족 $\mathscr{D} \ (\mathscr{D} \subseteq \mathscr{C})$가 다시 $E$의 피복이면, $\mathscr{D}$를 **$\mathscr{C}$의 부분피복 (subcovering)**이라 한다.
+
+특히, $\mathscr{D}$가 $\mathscr{C}$의 유한 개의 원소 $O_1, O_2, \dots, O_n$으로 이루어진 경우,  
+즉, $\mathscr{D}$가 $\mathscr{C}$의 유한 부분집합족이면 $\mathscr{D}$를 **$\mathscr{C}$의 유한부분피복 (finite subcovering)**이라고 한다.
+
+
+
+\subsection*{\textmd{1.4.2 컴팩트 집합의 정의}}
+$E$를 실수 집합 $\mathbb{R}$의 부분집합이라고 하자.  
+$E$의 임의의 개피복이 유한부분피복을 가질 때, $E$를 **컴팩트 집합 (compact set)**이라고 한다.
+
+
+
+\subsection*{\textmd{1.4.3 컴팩트 집합의 부분집합도 컴팩트 집합이다}}
+실수 집합 $\mathbb{R}$의 부분집합 $F \subseteq \mathbb{R}$을 폐집합이라고 하자.  
+$F$가 어떤 컴팩트 집합 $K$의 부분집합이면, $F$ 역시 컴팩트 집합이다.
+
+
+
+
+\subsection*{\textmd{1.4.4 하이네 보렐 정리}}
+실수 집합 $\mathbb{R}$의 부분집합 $K$가 컴팩트일 필요충분조건은  
+$K$가 유계인 폐집합이다.
+
+
+
+\subsection*{\textmd{1.5.1 비연결집합- 연결집합의 정의}}
+집합 $E$를 실수 집합 $\mathbb{R}$의 부분집합이라고 하자.  
+다음 조건을 만족하는 개집합 $A$, $B$가 존재할 때, $E$를 **비연결집합 (disconnected set)**이라고 한다.
+
+\begin{enumerate}
+    \item $(A \cap E) \cap (B \cap E) = \emptyset$
+    \item $(A \cap E) \cup (B \cap E) = E$
+    \item $A \cap E \neq \emptyset$, $B \cap E \neq \emptyset$
+\end{enumerate}
+
+실수 집합 $\mathbb{R}$의 부분집합 $E$가 비연결집합이 아닐 때, 이를 **연결집합 (connected set)**이라고 한다.  
+즉, 위의 조건 (1), (2), (3)을 만족시키는 개집합 $A$, $B$가 존재하지 않을 때, $E$를 **연결집합**이라고 한다.
+
+
+
+\subsection*{\textmd{1.5.2 연결집합일 필요충분조건 및 연결집합의 종류}}
+실수 집합 $\mathbb{R}$의 부분집합 $E$가 연결집합일 필요충분조건은 $E$가 다음 성질을 만족하는 것이다.
+
+\begin{quote}
+    만약 $a, b \in E$이고 $a < c < b$이면 $c \in E$이다.
+\end{quote}
+실수 집합 $\mathbb{R}$의 부분집합 $E$가 공집합이 아니고 하나의 원소만으로 이루어진 집합도 아니라고 하자.  
+$E$가 연결집합일 필요충분조건은 $E$가 **구간 (interval)**인 것이다.
+
+
+\setcounter{section}{1}
+
+\section{수렴}
+수열의 수렴성, 함수열의 수렴성, 급수의 수렴성, 함수항급수의 수렴성에 대해 다룬다.
+
+\subsection{극한의 개념 중에서 가장 기본이 되는 수열의 수렴성을 
+다룬다.}
+
+\subsection*{\textmd{2.1.1 수열의 수렴의 정의}}
+수열 \( \langle x_n \rangle \)에 대하여, 적당한 실수 \( x \)가 존재해서 다음 명제를 만족하면, 수열 \( \langle x_n \rangle \)이 극한 \( x \)에 수렴한다고 한다:
+
+임의의 \( \epsilon > 0 \)에 대하여, 이에 대응하는 적당한 자연수 \( K(\epsilon) = K \)가 존재하여, \( n > K \)인 모든 자연수 \( n \)에 대하여  
+\[
+|x_n - x| < \epsilon
+\]
+를 만족한다.
+
+\subsection*{\textmd{2.1.2 수열의 극한의 유일성}}
+수열 \( \langle x_n \rangle \)이 수렴하면, 그 극한은 유일하다.
+
+\subsection*{\textmd{2.1.3 수렴하는 수열은 유계 (관련: 2.4)}}
+수렴하는 수열 \( \langle x_n \rangle \)은 유계이다.
+
+\subsection{실수에서의 사칙연산이 모티브인 수열에서의 사칙연산을 생각한다}
+\subsection*{\textmd{2.2.1}}
+실수열 전체의 집합은 vector space이다.
+수렴하는 실수열들 전체의 집합은 vector space이다.
+\\
+$\to$ 부분집합이 같은 대수적 성질을 가지고 있다는 사실은 매우 흥미롭다.
+
+\subsection{부분수열의 개념, weierstrass 정리를 소개한다}
+
+\subsection*{\textmd{2.3.1 부분수열의 정의}}
+수열 \( \{ x_n \} \)을 주어진 수열이라고 하자. 자연수의 집합 \( \mathbb{N} \)에서의 수열 \( \{ n_k \} \)가 **순증가 수열**일 때, 수열 \( \{ x_{n_k} \} \)를 \( \{ x_n \} \)의 **부분수열(subsequence)**이라고 한다.
+
+\subsection*{\textmd{2.3.2 원수열이 수렴하면 부분수열도 수렴하며 그 극한값은 같다 (see 2.7.1)}}
+\[
+\text{만약 } x_n \to x \text{ 라면, 모든 부분수열 } x_{n_k} \text{ 또한 } x \text{ 로 수렴한다.}
+\]
+
+\subsection*{\textmd{2.3.3 집적점과 수열}}
+\( x \)가 실수의 부분집합 \( E \)의 **집적점**일 때, \( x \)에 수렴하는 \( E \)에서의 수열이 존재한다. 즉,
+\[
+x \in E'  \Rightarrow \exists \{ x_n \} \subset E, \quad x_n \to x.
+\]
+
+\subsection*{\textmd{2.3.4 Bolzano-Weierstrass 정리}}
+모든 **유계 실수열**은 반드시 **수렴하는 부분수열**을 가진다. 즉, 만약 \( \{ x_n \} \)이 유계라면,
+\[
+\exists \text{ 부분수열 } \{ x_{n_k} \} \text{ such that } x_{n_k} \to L \text{ for some } L \in \mathbb{R}.
+\]
+
+\subsection{\fontsize{11.5}{13}\selectfont 수열의 극한을 추정하지 않고도 (앞에서는 모두 그러한 방법들이었는데) 수열의 수렴성을 판정하는 두 가지 방법 [단조수렴정리, 코시판정법] 또한 이들은 실수계의 완비성공리로부터 얻어진다.}
+
+\subsection*{\textmd{2.4.1 단조수열의 정의}}
+수열 \( \{ x_n \} \)에서 모든 자연수 \( n \)에 대하여 \( x_n \leq x_{n+1} \) \([x_n \geq x_{n+1}]\)인 관계를 만족하면, \( \{ x_n \} \)을 단조증가수열[단조감소수열]이라고 한다. 단조증가 또는 단조감소수열을 통틀어 단조수열(monotone sequence)이라고 한다.
+
+\subsection*{\textmd{2.4.2 단조수렴정리}}
+(1) \( \{ x_n \} \)을 단조증가수열이라고 할 때,  
+(a) \( \{ x_n \} \)이 위로 유계이면, \( \{ x_n \} \)은 수렴하고 그 극한은  
+\[
+\lim_{x \to \infty} x_n = \sup \{ x_n : n \in \mathbb{N} \}
+\]
+(b) \( \{ x_n \} \)이 위로 유계가 아니면,  
+\[
+\lim_{x \to \infty} x_n = \sup \{ x_n : n \in \mathbb{N} \} = \infty
+\]
+(2) \( \{ x_n \} \)을 단조감소수열이라고 할 때,  
+(a) \( \{ x_n \} \)이 아래로 유계이면, \( \{ x_n \} \)은 수렴하고 그 극한은  
+\[
+\lim_{x \to \infty} x_n = \inf \{ x_n : n \in \mathbb{N} \}
+\]
+(b) \( \{ x_n \} \)이 아래로 유계가 아니면,  
+\[
+\lim_{x \to \infty} x_n = \inf \{ x_n : n \in \mathbb{N} \} = -\infty
+\]
+단조수렴정리로부터 유계인 단조수열은 반드시 수렴한다. 또한 수렴하는 수열은 반드시 유계이다. 따라서 단조수열이 수렴할 필요충분조건은 유계인 것이다.
+
+\subsection*{\textmd{2.4.3 코시수열의 정의}}
+수열 \( \{ x_n \} \)에 있어서, 명제  
+임의의 \( \epsilon > 0 \)에 대하여, 이에 대응하는 적당한 자연수 \( K = K(\epsilon) \)가 존재하여  
+\( n > m > K \)인 모든 자연수 \( n, m \)에 대하여  
+\[
+|x_n - x_m| < \epsilon
+\]
+를 만족하면, \( \{ x_n \} \)을 코시수열(Cauchy sequence)이라고 한다.
+
+\subsection*{\textmd{2.4.4-2.4.6 일련의 fact들}}
+(1) 임의의 수렴하는 수열은 코시 수열이다.  
+
+(2) 모든 코시 수열은 반드시 유계이다.  
+
+(3) 코시수열의 모든 부분수열은 코시 수열이다. 또한, 코시 수열의 어떤 한 부분수열이 실수 \( x \)에 수렴하면, 원수열도 \( x \)에 수렴한다.
+
+
+\subsection*{\textmd{2.4.7 실수열이 수렴할 필요충분조건은 코시열인 것이다}}
+
+\subsection{\fontsize{11.5}{13}\selectfont 극한은 수렴하는 수열에 대한 개념이다. 그러나 모든 수열이 수렴하지는 않는다. 수렴하는 수열에 대한 개념인 상극한/하극한 개념을 소개한다.}
+
+\subsection*{\textmd{2.5.1 상극한/하극한의 정의}}
+수열 \( \langle x_n \rangle \)을 주어진 수열이라고 하자. 각 자연수 \( k \)에 대하여 집합 \( A_n = \{ x_n : n \geq k \} \)를 정의하고, \( A_k \)의 상한과 하한을 각각 \( s_k \), \( l_k \)라고 하자. 집합열 \( \langle A_k \rangle \)는 
+\[
+A_1 \supset A_2 \supset A_3 \supset \dots
+\]
+인 관계가 성립하므로, 수열 \( \langle s_k \rangle \)는 단조감소하고, 한편 수열 \( \langle l_k \rangle \)는 단조증가한다. 이때
+수열 \( \langle x_n \rangle \)의 상극한(limit superior, upper limit)을 
+\[
+\lim_{k \to \infty} s_k = \inf \{ s_k : k \in \mathbb{N} \}
+\]
+으로 정의한다.
+또, 수열 \( \langle x_n \rangle \)의 하극한(limit inferior, lower limit)을 
+\[
+\lim_{k \to \infty} l_k = \sup \{ l_k : k \in \mathbb{N} \}
+\]
+으로 정의한다.
+
+\subsection*{\textmd{2.5.2 유계수열/비유계수열의 상극한/하극한}}
+(1) 수열 \( \langle x_n \rangle \)이 위로 유계이면, \( \langle s_k \rangle \)도 또한 위로 유계가 되므로 수열 \( \langle x_n \rangle \)의 상극한은
+\[
+\limsup x_n = \lim_{k \to \infty} s_k = \inf \{ s_k : k \in \mathbb{N} \} = \inf_k \sup_{n \geq k} x_n
+\]
+이 되고, 한편 수열 \( \langle x_n \rangle \)이 위로 유계가 아니면, \( \langle s_k \rangle \)도 또한 위로 유계가 안 되므로 수열 \( \langle x_n \rangle \)의 상극한은
+\[
+\limsup x_n = \infty
+\]
+가 된다.
+(2) 수열 \( \langle x_n \rangle \)이 아래로 유계이면, \( \langle l_k \rangle \)도 또한 아래로 유계가 되므로 수열 \( \langle x_n \rangle \)의 하극한은
+\[
+\liminf x_n = \lim_{k \to \infty} l_k = \sup \{ l_k : k \in \mathbb{N} \} = \sup_k \inf_{n \geq k} x_n
+\]
+이 되고, 한편 수열 \( \langle x_n \rangle \)이 아래로 유계가 아니면, \( \langle l_k \rangle \)도 또한 아래로 유계가 안 되므로 수열 \( \langle x_n \rangle \)의 하극한은
+\[
+\liminf x_n = -\infty
+\]
+가 된다.
+
+\subsection*{\textmd{2.5.3 상극한/하극한임과 동치인 명제}}
+(1) 수열 \( \langle x_n \rangle \)이 유계이고, 그 상극한을 \( s \)라고 하자. 이는 다음 두 명제 (a) \& (b)와 동치이다.
+
+(a) 임의로 주어진 \( \epsilon > 0 \)에 대하여, 이에 대응하는 적당한 자연수 \( K \)가 존재하여, \( n \geq K \)인 모든 자연수 \( n \)에 대하여 다음이 성립한다.
+\[
+x_n < s + \epsilon
+\]
+
+(b) 임의로 주어진 \( \epsilon > 0 \)과 임의의 자연수 \( n \)에 대하여, 
+\[
+s - \epsilon < x_m
+\]
+가 성립하는
+\( m \geq n \)인 적당한 자연수 \( m \)이 반드시 존재한다.
+
+(2) 수열 \( \langle x_n \rangle \)이 유계이고, 그 하극한을 \( l \)이라고 하자. 이는 다음 두 명제 (a) \& (b)와 동치이다.
+
+(a) 임의로 주어진 \( \epsilon > 0 \)에 대하여, 이에 대응하는 적당한 자연수 \( K \)가 존재하여, \( n \geq K \)인 모든 자연수 \( n \)에 대하여 다음이 성립한다.
+\[
+l - \epsilon < x_n
+\]
+
+(b) 임의로 주어진 \( \epsilon > 0 \)과 임의의 자연수 \( n \)에 대하여, 
+\[
+x_m < l + \epsilon
+\]
+가 성립하는
+\( m \geq n \)인 적당한 자연수 \( m \)이 반드시 존재한다.
+
+\subsection*{\textmd{2.5.4 상극한/하극한에 대한 부등식}}
+다음은 fact로 받아들인다.
+
+수열 \( \langle x_n \rangle \)과 \( \langle y_n \rangle \)이 유계라고 할 때, 다음이 성립한다.
+
+(a) \( \liminf x_n + \liminf y_n \leq \liminf (x_n + y_n) \)
+
+(b) \( \limsup (x_n + y_n) \leq \limsup x_n + \limsup y_n \)
+
+(c) \( c \geq 0 \)이면 \( \limsup c x_n = c \limsup x_n \)이고, \( \liminf c x_n = c \liminf x_n \)이다.
+
+(d) \( \liminf (-x_n) = -\limsup x_n \)이고 \( \limsup (-x_n) = -\liminf x_n \)이다.
+
+
+
+\subsection{\fontsize{11.5}{13}\selectfont 
+실수열의 수렴성과 극한에서 나아가 함수열의 수렴성과 극한함수에 대해 논한다}
+
+\subsection*{\textmd{2.6.1 함수열의 정의}}
+\( D \)를 실수의 집합 \( \mathbb{R} \)의 부분집합이라고 하자. 각 자연수 \( n \)에 대하여 함수 \( f_n : D \to \mathbb{R} \)이 정의되어 있을 때, 함수 \( f_n \)들을 차례로 나열시킨 것을 \( D \) 위에서 정의된 함수열 (sequence of functions defined on \( D \))이라고 한다. 즉, 집합 \( \Omega \)를 함수 \( f_n : D \to \mathbb{R} \)들로 이루어진 집합이라 할 때, 함수 \( \phi : \mathbb{N} \to \Omega \)를 \( D \) 위에서 정의된 함수열이라고 하고, 기호로는
+\[
+\phi = \langle f_n \rangle
+\]
+으로 나타낸다.
+
+\subsection*{\textmd{2.6.2 점별수렴의 정의}}
+\( D \)를 실수의 집합 \( \mathbb{R} \)의 부분집합이라고 하고 \( \langle f_n \rangle \)을 \( D \) 위에서 정의된 함수열이라고 할 때, 각 점 \( x \in D \)에 대응된 수열 \( \langle f_n(x) \rangle \)가 수렴하면, 함수열
+\( \langle f_n \rangle \)은 \( D \) 위에서 점별수렴 (pointwise convergence)한다. 또한 간단히 수렴한다고 한다. 이때, 새로운 함수 \( f : D \to \mathbb{R} \)을 
+\[
+f(x) = \lim_{n \to \infty} f_n(x)
+\]
+로 정의할 때, 이 함수 \( f \)를 \( \langle f_n \rangle \)의 점별극한함수 (pointwise limit function) 또는 간단히 극한함수라고 부른다.
+
+\subsection*{\textmd{2.6.3 점별수렴할 필요충분조건}}
+실수의 집합 \( \mathbb{R} \)의 부분집합 \( D \) 위에서 정의된 함수열 \( \langle f_n \rangle \)이 함수 \( f \)에 점별수렴할 필요충분조건은 각 점 \( x \in D \)에 대하여, 임의의 \( \epsilon > 0 \)이 주어졌을 때 이에 대응하는 자연수 \( K(x, \epsilon) \)가 존재하여
+\[
+n \geq K(x, \epsilon) \implies | f_n(x) - f(x) | < \epsilon
+\]
+이 성립하는 것이다.
+
+\subsection*{\textmd{2.6.4 평등수렴의 정의}}
+실수의 집합 \( \mathbb{R} \)의 부분집합 \( D \) 위에서 정의된 함수열 \( \langle f_n \rangle \)과 함수 \( f : D \to \mathbb{R} \)에 대하여, 
+임의의 \( \epsilon > 0 \)에 대하여 이에 대응하는 자연수 \( K(\epsilon) \)가 존재하여
+\[
+n \geq K(\epsilon) \text{인 모든 자연수 } n \text{과 모든 } x \in D \text{에 대하여 부등식 }
+| f_n(x) - f(x) | < \epsilon
+\]
+가 성립한다면, \( \langle f_n \rangle \)은 \( D \) 위에서 \( f \)에 평등수렴 (uniform convergence)한다고 말한다.
+
+\subsection*{\textmd{2.6.5 평등수렴하지 않을 필요충분조건}}
+\( D \)를 실수의 집합 \( \mathbb{R} \)의 부분집합이라고 하고 \( \langle f_n \rangle \)을 \( D \) 위에서 정의된 함수열이라고 하자. \( \langle f_n \rangle \)이 \( D \) 위에서 함수 \( f : D \to \mathbb{R} \)에 평등수렴하지 않을 필요충분조건은 
+적당한 \( \epsilon_0 > 0 \)에 대하여, \( \langle f_n \rangle \)의 부분함수열 \( \langle f_{n_k} \rangle \)와 \( D \)에서의 수열 \( \langle x_k \rangle \)가 존재해서 모든 자연수 \( k \)에 대하여
+\[
+| f_{n_k}(x_k) - f(x_k) | \geq \epsilon_0
+\]
+이 성립하는 것이다.
+
+\subsection*{\textmd{2.6.6 평등수렴할 필요충분조건}}
+\( D \)를 실수의 집합 \( \mathbb{R} \)의 부분집합이라고 하고 \( \langle f_n \rangle \)을 \( D \) 위에서 정의된 함수열이라고 하자. \( \langle f_n \rangle \)이 \( D \) 위에서 함수 \( f : D \to \mathbb{R} \)에 평등수렴할 필요충분조건은 명제
+임의의 \( \epsilon > 0 \)에 대하여 이에 대응하는 적당한 자연수 \( K(\epsilon) \)가 존재하여 \( n > m \geq K \)인 모든 자연수 \( n, m \)과 모든 자연수 \( x \in D \)에 대하여
+\[
+| f_n(x) - f_m(x) | < \epsilon
+\]
+이 성립하는 것이다.
+
+\subsection{\fontsize{11.5}{13}\selectfont 
+실수계의 체의 공리로부터 임의의 유한개의 실수들의 합이 유일하게 존재함을 알고 있다. 이 절에서는 수열의 극한개념을 이용하여 무한개의 실수들의 합이 존재하는가의 문제에 대해 논한다.}
+
+
+\subsection*{\textmd{2.7.1 실수의 무한합에서 결합법칙이 성립할 조건 (see also: 2.9.4)}}
+주어진 무한급수가 수렴하면, 그 급수의 항들을 임의의 방법으로 결합하여 만들어진 새로운 급수도 수렴하며 그 합은 원급수의 합과 같다.
+
+\subsection*{\textmd{2.7.2 급수의 수렴성에 대한 코시 판정법}}
+급수 \( \sum a_n \)이 수렴할 필요충분조건은 임의의 \( \epsilon > 0 \)에 대하여 이에 대응하는 적당한 자연수 \( K = K(\epsilon) \)가 존재하여
+\[
+m \geq n \geq K \implies \left| a_{n+1} + \dots + a_m \right| = \left| \sum_{k=n+1}^{m} a_k \right| < \epsilon
+\]
+이 성립하는 것이다.
+
+\subsection*{\textmd{2.7.3 급수가 수렴할 경우의 기본 성질}}
+급수 \( \sum a_n \)이 수렴하면, 반드시
+\[
+\lim_{n \to \infty} a_n = 0
+\]
+이 성립한다.
+
+\subsection*{\textmd{2.7.4 자연로그 밑 \( e \)의 급수 표현}}
+\[
+e = \sum_{n \geq 0} \frac{1}{n!}
+\]
+
+\subsection{\fontsize{11.5}{13}\selectfont 
+급수가 주어졌을 때, 수렴성을 조사할 수 있는 4가지 판정법을 논한다.}
+
+\subsection*{\textmd{2.8.1 비교판정법}}
+
+두 급수 \( \sum a_n \)과 \( \sum b_n \)에 있어서, 적당한 자연수 \( N_0 \)가 존재하여 \( n \geq N_0 \)인 모든 자연수 \( n \)에 대하여
+
+(a) \( \left| b_n \right| \leq a_n \)이고 \( \sum a_n \)이 수렴한다면, \( \sum b_n \)도 수렴한다.
+
+(b) \( b_n \geq a_n \geq 0 \)이고 \( \sum a_n \)이 발산한다면, \( \sum b_n \)도 발산한다.
+
+\subsection*{\textmd{2.8.2 제곱근 판정법}}
+
+제곱근 판정법과 관련된 정리는 다음과 같다.
+
+(1) 급수 \( \sum a_n \)에 있어서,
+
+(a) 적당한 실수 \( 0 \leq r < 1 \)과 적당한 자연수 \( K \)가 존재해서 \( n \geq K \)인 모든 자연수 \( n \)에 대하여 \( \left| a_n \right|^{1/n} \leq r \)이면, \( \sum a_n \)은 수렴한다.
+
+(b) 적당한 실수 \( r > 1 \)과 적당한 자연수 \( K \)가 존재해서 \( n \geq K \)인 모든 자연수 \( n \)에 대하여 \( \left| a_n \right|^{1/n} \geq r \)이면, \( \sum a_n \)은 발산한다.
+
+(2) 급수 \( \sum a_n \)에 있어서, \( \lim \left( \left| a_n \right|^{1/n} \right) = r \)일 때
+
+(a) \( 0 \leq r < 1 \)이면, \( \sum a_n \)은 수렴하고
+
+(b) \( r > 1 \)이면, \( \sum a_n \)은 발산한다.
+
+(c) \( r = 1 \)이면, 급수의 수렴성의 판정이 불가능하다.
+
+(3) (2)의 \( r = \lim \left( \left| a_n \right|^{1/n} \right) \)을 \( r = \limsup \left( \left| a_n \right|^{1/n} \right) \)으로 바꾸어 생각하여도 정리의 결과가 모두 성립한다.
+
+\subsection*{\textmd{2.8.3 비판정법}}
+
+비판정법과 관련된 정리는 다음과 같다.
+
+(1) 급수 \( \sum a_n \)에 있어서, 모든 자연수 \( n \)에 대하여 \( a_n \neq 0 \)이라고 하자.
+
+(a) 적당한 실수 \( 0 < r < 1 \)과 적당한 자연수 \( K \)가 존재해서 \( n \geq K \)인 모든 자연수 \( n \)에 대하여 \( \left| \frac{a_{n+1}}{a_n} \right| \leq r \)이면 \( \sum a_n \)은 수렴한다.
+
+(b) 적당한 실수 \( r > 1 \)과 적당한 자연수 \( K \)가 존재해서 \( n \geq K \)인 모든 자연수 \( n \)에 대하여 \( \left| \frac{a_{n+1}}{a_n} \right| \geq r \)이면 \( \sum a_n \)은 발산한다.
+
+(2) 급수 \( \sum a_n \)에 있어서, \( \lim \left| \frac{a_{n+1}}{a_n} \right| = r \)일 때
+
+(a) \( 0 \leq r < 1 \)이면, \( \sum a_n \)은 수렴한다.
+
+(b) \( r > 1 \)이면, \( \sum a_n \)은 발산한다.
+
+(c) \( r = 1 \)이면, 급수의 수렴성의 판정이 불가능하다.
+
+(3) (2)의 \( r = \lim \left| \frac{a_{n+1}}{a_n} \right| \)을 \( r = \limsup \left| \frac{a_{n+1}}{a_n} \right| \)으로 바꾸어 생각하여도 정리의 결과가 모두 성립한다.
+
+\subsection*{\textmd{2.8.4 제곱근 판정법과 비판정법의 관계}}
+
+제곱근 판정법과 비판정법의 결과는 서로 동일하다. 즉, 급수 \( \sum a_n \)에 있어서 \( \lim \left| \frac{a_{n+1}}{a_n} \right| \)이 존재하면 \( \lim \left| a_n \right|^{1/n} \)도 존재하고 그 극한값은 \( \lim \left| \frac{a_{n+1}}{a_n} \right| \)과 같음이 알려져 있다 (Rudin p.59 참조). 따라서 급수가 비판정법에 의해 수렴하면 그 급수는 또한 제곱근 판정법에 의해서도 수렴한다.
+
+\subsection*{\textmd{2.8.5 교대급수 판정법}}
+
+교대급수 \( \sum a_n \)이 다음의 두 조건
+
+(i) \( \left| a_1 \right| \geq \left| a_2 \right| \geq \left| a_3 \right| \geq \dots \geq 0 \)
+
+(ii) \( \lim a_n = 0 \)
+
+을 만족하면, 급수 \( \sum a_n \)은 수렴한다.
+
+
+
+\subsection{\fontsize{11.5}{13}\selectfont 
+급수의 절대수렴성과 조건수렴성을 정의하고, 절대수렴하는 급수의 매우 중요한 성질을 증명한다.} 
+
+\subsection*{\textmd{2.9.1 절대 수렴과 조건 수렴의 정의}}
+급수 \( \sum a_n \)에 있어서, 급수 \( \sum |a_n| \)이 수렴하면 \( \sum a_n \)은 절대 수렴(absolute convergence)한다고 말하고,
+급수 \( \sum a_n \)은 수렴하지만 급수 \( \sum |a_n| \)이 수렴하지 않으면 \( \sum a_n \)은 조건 수렴(conditional convergence)한다고 말한다.
+
+\subsection*{\textmd{2.9.2 \( \sum a_n \)과 \( \sum (a_n)^+ \), \( \sum (a_n)^- \)의 관계 (필요충분조건)}}
+- 급수 \( \sum a_n \)이 절대 수렴할 필요충분조건은 급수 \( \sum (a_n)^+ \)와 \( \sum (a_n)^- \)가 모두 수렴하는 것이다.
+- 급수 \( \sum a_n \)이 조건 수렴하면, \( \sum (a_n)^+ \)와 \( \sum (a_n)^- \)가 모두 발산한다.
+
+\subsection*{\textmd{2.9.3 재배열 급수의 정의}}
+함수 \( f: \mathbb{N} \to \mathbb{N} \)을 전단사 함수라고 하자. 급수 \( \sum a_n \)에 대하여, 각 자연수 \( n \)에 대하여 새로운 급수 \( \sum b_n \)의 제 \( n \)항을
+\( b_n = a_{f(n)} \)으로 정의하였을 때, 급수 \( \sum b_n \)을 주어진 급수 \( \sum a_n \)의 재배열 급수(rearrangement of \( \sum a_n \))라고 부른다.
+
+\subsection*{\textmd{2.9.4 실수의 무한 합에서 교환 법칙이 성립할 조건}}
+급수 \( \sum a_n \)이 절대 수렴하면, \( \sum a_n \)의 임의의 재배열 급수도 수렴하고, 그 합은 \( \sum a_n \)의 합과 같다.
+
+\subsection*{\textmd{2.9.5 조건 수렴하는 급수의 재배열 급수}}
+급수 \( \sum a_n \)이 절대 수렴하지 않고 조건 수렴하면, \( \sum a_n \)의 재배열 급수 \( \sum b_n \)이 수렴한다고 하더라도 그 합은 일반적으로 원급수 \( \sum a_n \)의 합과 일치하지 않는다. 
+실제로 \( \sum a_n \)이 조건 수렴하면 임의로 정한 수에 수렴하는 \( \sum a_n \)의 재배열 급수를 만들 수 있고, 또한 발산하는 \( \sum a_n \)의 재배열 급수를 만들 수 있다는 사실이 알려져 있다. (Rudin, p.67 참조)
+
+\subsection*{\textmd{2.9.6 Cauchy product의 정의}}
+급수 \( \sum a_n \)과 \( \sum b_n \)이 주어졌을 때, 각 자연수 \( n \)에 대하여
+\[ c_n = \sum_{i+j=n+1} a_i b_j \] 
+을 제 \( n \)항으로 하는 급수를 얻을 수 있다. 이 급수를 주어진 두 급수의 코시 곱(Cauchy product)이라고 한다.
+
+\subsection*{\textmd{2.9.7 Cauchy product의 수렴성}}
+급수 \( \sum a_n \)이 절대 수렴하고 \( \sum a_n = S \), 또한 급수 \( \sum b_n \)이 수렴하고 \( \sum b_n = T \)라고 하면,
+\( \sum a_n \)과 \( \sum b_n \)의 코시 곱 \( \sum c_n \)도 수렴하며 \( \sum c_n = ST \)이다.
+
+
+\subsection{\fontsize{11.5}{13}\selectfont 
+실수열로부터 무한급수를 만들었던 것처럼 함수열로부터 함수항급수를 정의하고, 함수항급수의 점별수렴성과 평등수렴성에 대해 논한다. 함수항급수의 특수한 경우로서 거듭제곱급수의 수렴성도 다룬다.}
+
+
+\subsection*{\textmd{2.10.1 함수항급수의 정의, 함수항급수의 점별수렴/평등수렴의 개념}}
+
+$f_n$을 실수의 집합 $\mathbb{R}$의 부분집합 $D$ 위에서 정의된 함수열이라고 하자. 함수열 $\langle f_n \rangle$의 각 항 $f_n$을 합(+)의 기호로 연결한 식 
+\[
+f_1 + f_2 + \cdots + f_n + \cdots = \sum f_n
+\]
+을 $D$ 위에서 정의된 함수항급수(series of functions defined on $D$)라 한다. 
+
+함수항급수 $\sum f_n$의 부분합의 함수열 $\langle S_n \rangle$이 $D$ 위에서 함수 $f$에 점별수렴할 때, $\sum f_n$은 $D$ 위에서 $f$에 점별수렴한다고 말한다. 이때, 함수 $f$를 $\sum f_n$의 합(sum)이라 부르고 기호는 $f = \sum f_n$으로 나타낸다. 
+
+또한, $\langle S_n \rangle$이 $D$ 위에서 함수 $f$에 평등수렴할 때, $\sum f_n$은 $D$ 위에서 $f$에 평등수렴한다고 말한다.
+
+\subsection*{\textmd{2.10.2 코시 판정법}}
+
+$\sum f_n$을 실수의 집합 $\mathbb{R}$의 부분집합 $D$ 위에서 정의된 함수항급수라고 하자. $\sum f_n$이 $D$ 위에서 평등수렴할 필요충분조건은 
+임의의 $\epsilon > 0$에 대하여 이에 대응하는 자연수 $K = K(\epsilon)$이 존재하여
+\[
+m \geq n \geq K \quad \text{인 모든 자연수 } m, n \text{과 모든 } x \in D \text{에 대하여}
+\]
+\[
+\left| \sum_{k=n+1}^{m} f_k(x) \right| < \epsilon
+\]
+이 성립하는 것이다.
+
+\subsection*{\textmd{2.10.3 Weierstrass M-test}}
+
+$\langle f_n \rangle$을 실수의 집합 $\mathbb{R}$의 부분집합 $D$ 위에서 정의된 함수열이라 하고, 모든 $x \in D$와 모든 자연수 $n$에 대하여 
+\[
+|f_n(x)| \leq M_n
+\]
+을 만족하는 수열 $\langle M_n \rangle$이 존재한다고 하자. 이때, 급수 
+\[
+\sum_{n=1}^{\infty} M_n
+\]
+이 수렴하면 함수항급수 $\sum f_n$은 $D$ 위에서 평등수렴한다.
+
+\subsection*{\textmd{2.10.4 수렴반경, 수렴구간}}
+
+거듭제곱급수 $\sum a_n x^n$에 있어서 
+\[
+\alpha = \limsup_{n \to \infty} |a_n|^{1/n}, \quad R = \frac{1}{\alpha}
+\]
+이라고 놓자. 여기서, $\alpha = 0$이면 $R = \infty$로, $\alpha = \infty$이면 $R = 0$으로 정의하기로 한다. 이때, $R$을 거듭제곱급수 $\sum a_n x^n$의 수렴반경(radius of convergence)이라 하고, 구간 $(-R, R)$을 수렴구간(interval of convergence)이라고 한다.
+
+\subsection*{\textmd{2.10.5 수렴성 조건}}
+
+거듭제곱급수 $\sum a_n x^n$이 
+\begin{itemize}
+    \item[(a)] 점 $x = x_1$에서 수렴하면, $\sum a_n x^n$은 $|x| < |x_1|$인 모든 점 $x \in \mathbb{R}$에서 절대수렴하고
+    \item[(b)] 점 $x = x_2$에서 발산하면, $\sum a_n x^n$은 $|x| > |x_2|$인 모든 점 $x \in \mathbb{R}$에서 발산한다.
+\end{itemize}
+
+\subsection*{\textmd{2.10.6 수렴반경에 따른 수렴성}}
+
+거듭제곱급수 $\sum a_n x^n$의 수렴반경을 $R > 0$ (혹은 $R = \infty$일 경우도 포함)이라고 하자. 
+\begin{itemize}
+    \item[(a)] $\sum a_n x^n$은 임의의 점 $x \in (-R, R)$에서 절대수렴한다.
+    \item[(b)] $\sum a_n x^n$은 임의의 유계 폐구간 $[a, b] \subset (-R, R)$ 위에서 평등수렴한다.
+\end{itemize}
+
+
+
+\setcounter{section}{2}
+
+\section{연속함수}
+해석학에서 다루는 함수 중에서 가장 중요한 연속함수에 대해 다룬다.
+함수의 연속성은 1장에서 논한 실직선의 위상개념과 이 장에서 논하게 될 함수에 대한 극한의 개념을 토대로 해서 설명되는 개념이다.
+
+(flow) 극한의 개념, 기본성질, 함수의 연속성/ 컴팩트집합 위에서 정의된 연속함수의 중요한 성질/ 함수의 평등연속성의 정의, 연속성과의 차이점과 서로의 관계/ 단조함수에 관한 성질과 함수의 불연속성과의 관련/ 연속함수열이 점별수렴 및 평등수렴할 때 극한함수의 연속성/ 연속함수를 보다 초등적 함수인 다항함수로 근사시킬 수 있는가
+
+
+\subsection{\fontsize{11.5}{13}\selectfont{정의역이 $\mathbb{R}$의 부분집합인 함수의 극한에 대해 논한다. 2장에서 다룬 수열의 극한은 정의역이 $\mathbb{N}$인 함수로 3장의 특수한 경우이다.}}
+
+
+\subsection*{\textmd{3.1.1 함수의 극한의 정의}}
+
+$E$를 실수의 집합 $\mathbb{R}$의 부분집합이라 하고, 한 실수 $a$를 $E$의 집적점이라고 하자. 함수 $f: E \to \mathbb{R}$에 있어서, 적당한 실수 $L$이 존재해서 
+임의의 $\epsilon > 0$에 대하여 이에 대응하는 적당한 $\delta > 0$이 존재하여 
+\[
+0 < |x - a| < \delta, \, x \in E \quad \text{이면} \quad |f(x) - L| < \epsilon
+\]
+를 만족하면, 
+\[
+\lim_{x \to a} f(x) = L
+\]
+로 나타낸다.
+
+\subsection*{\textmd{3.1.2 함수의 극한의 유일성}}
+
+실수 $a$가 $E \subset \mathbb{R}$의 집적점일 때, 함수 $f: E \to \mathbb{R}$에 있어서 $\lim_{x \to a} f(x)$가 존재하면 그 극한값은 유일하다.
+
+\subsection*{\textmd{3.1.3 함수의 극한과 동치인 명제}}
+
+$E$를 실수의 집합 $\mathbb{R}$의 부분집합이라 하고 실수 $a$를 $E$의 집적점이라고 하자. 함수 $f: E \to \mathbb{R}$와 실수 $L$에 대하여 다음의 명제들은 동치이다 (TFAE).
+\begin{itemize}
+    \item[(a)] $\lim_{x \to a} f(x) = L$
+    \item[(b)] 점 $a$에 수렴하는 $E$에서의 임의의 수열 $\langle x_n \rangle$ (단, $x_n \neq a$)에 대하여 $\lim_{n \to \infty} f(x_n) = L$이다.
+    \item[(c)] $L$을 포함하는 임의의 개집합 $V$에 대하여, 이에 대응하는 $a$를 포함하는 적당한 개집합 $U$가 존재하여 
+    \[
+    x \in U \cap E, \, x \neq a \quad \text{이면} \quad f(x) \in V
+    \]
+이다.
+\end{itemize}
+
+
+\subsection{\fontsize{11.5}{13}\selectfont{
+함수의 연속성을 $\epsilon$-$\delta$ 방법 이외에도 \textless 함수의 극한 개념 + 근방 개념\textgreater을 이용해 정의할 수 있다. 또한 1장에서 소개한 개집합/폐집합 개념을 이용해 함수의 연속성과 동치인 명제를 알아본다.}}
+
+
+\subsection*{\textmd{3.2.1 함수의 연속의 정의}}
+
+$E$를 실수의 집합 $\mathbb{R}$의 부분집합이라 하고, 실수 $c$를 $c \in E$라고 하자. 함수 $f: E \to \mathbb{R}$에 있어서 임의의 $\epsilon > 0$에 대하여 이에 대응하는 적당한 $\delta = \delta(\epsilon) > 0$이 존재하여
+\[
+|x - c| < \delta \quad \text{이고,} \quad x \in E \quad \text{이면} \quad |f(x) - f(c)| < \epsilon
+\]
+를 만족하면, 함수 $f$는 점 $x = c$에서 연속이라고 한다.
+
+\subsection*{\textmd{3.2.2 연속일 필요충분 조건은 lim과 f가 교환가능한 것이다.}}
+
+\[
+\lim_{x \to c} f(x) = f \left( \lim_{x \to c} x \right)
+\]
+특히 집적점인 경우의 고려가 의미 있는 고려 대상이다. (왜냐하면 고립점인 경우 자명하게 연속이 되기 때문이다.)
+
+\subsection*{\textmd{3.2.3 함수의 연속과 동치인 명제}}
+
+집합 $E$를 실수의 집합 $\mathbb{R}$의 부분집합이라 하고, $c \in E$라고 하자. 함수 $f: E \to \mathbb{R}$에 있어 TFAE.
+\begin{itemize}
+    \item[(a)] $f$는 $x = c$에서 연속이다.
+    \item[(b)] 점 $c$에 수렴하는 $E$에서의 임의의 수열 $\langle x_n \rangle$에 대응한 수열 $\langle f(x_n) \rangle$은 언제나 $f(c)$에 수렴한다.
+    \item[(c)] $f(c)$를 포함하는 임의의 개집합 $V$에 대하여, 이에 대응하는 $c$를 품는 적당한 개집합 $U$가 존재하여
+    \[
+    x \in E \cap U \quad \text{이면} \quad f(x) \in V
+    \]
+이다.
+\end{itemize}
+
+\subsection*{\textmd{3.2.4 $\mathbb{R}$에서의 함수의 연속성과 동치인 두 명제 (TFAE)}}
+
+함수 $f: \mathbb{R} \to \mathbb{R}$에 있어서 다음 명제들은 서로 동치이다.
+\begin{itemize}
+    \item[(a)] $f$는 $\mathbb{R}$ 위에서 연속이다.
+    \item[(b)] $\mathbb{R}$에서의 임의의 개집합 $G$에 대하여 역상 $f^{-1}(G)$가 개집합이다.
+    \item[(c)] $\mathbb{R}$에서의 임의의 폐집합 $F$에 대하여 역상 $f^{-1}(F)$가 폐집합이다.
+\end{itemize}
+
+
+
+\subsection{\fontsize{11.5}{13}\selectfont{
+$\mathbb{R}$의 부분집합에서 정의된 연속함수 전체의 집합에도 2장의 수열공간에서와 같은 대수적 구조(벡터공간)가 형성되어 있음을 보인다.}}
+
+
+\subsection*{\textmd{3.3.1 (실수의 부분집합 E 위에서 정의된) 연속함수들의 집합은 벡터공간이다}}
+
+\subsection*{\textmd{3.3.2 연속함수들의 합성함수는 연속함수이다.}}
+
+
+
+\subsection{\fontsize{11.5}{13}\selectfont{
+컴팩트 집합 위에서 정의된 연속함수는 해석학에서 매우 중요한 성질들(3개의 정리들)을 가지고 있음을 보인다. 또한 유계폐구간에서 정의된 함수에 관한 3가지 정리를 소개한다.}}
+
+
+
+\subsection*{\textmd{3.4.1 - 3.4.3 연속함수의 세 가지 성질(정리들)}}
+
+\begin{itemize}
+    \item[(1)] $K$가 실수의 집합 $\mathbb{R}$의 컴팩트 부분집합일 때, 함수 $f: K \to \mathbb{R}$가 $f \in C(K)$이면 $f$는 $K$ 위에서 유계이다.
+    \[
+    \text{(cpt--연속함수--\textgreater 유계)}
+    \]
+    \item[(2)] $K$가 실수의 집합 $\mathbb{R}$의 컴팩트 부분집합일 때, 함수 $f: K \to \mathbb{R}$가 $f \in C(K)$이면 $f$는 $K$ 위에서 최댓값과 최솟값을 갖는다. 즉, 
+    \[
+    f(x^*) = \sup\{f(x): x \in K\}, \quad f(x_*) = \inf\{f(x): x \in K\}
+    \]
+    가 되는 점 $x^* \in K$와 $x_* \in K$가 각각 존재한다.
+    \[
+    \text{(cpt--연속함수--\textgreater min/max)}
+    \]
+    \item[(3)] $K$가 실수의 집합 $\mathbb{R}$의 컴팩트 부분집합일 때, 함수 $f: K \to \mathbb{R}$가 $f \in C(K)$이면 $f(K)$는 컴팩트 집합이다.
+    \[
+    \text{(cpt--연속함수--\textgreater cpt)}
+    \]
+\end{itemize}
+
+\subsection*{\textmd{3.4.4 중간값 정리}}
+
+함수 $f: [a, b] \to \mathbb{R}$가 폐구간 $[a, b]$에서 연속이고 또한 $f(a) < f(b)$이면, $f(a) < m < f(b)$인 임의의 실수 $m$에 대하여, $f(c) = m$을 만족시키는 점 $c$가 개구간 $(a, b)$에 존재한다.
+
+\subsection*{\textmd{3.4.5}}
+
+$f: [a, b] \to \mathbb{R}$가 폐구간 $[a, b]$에서 연속이고 상수함수가 아니면 $f$의 치역 $f([a, b])$는 폐구간이다.
+
+\subsection*{\textmd{3.4.6}}
+
+$f: [a, b] \to \mathbb{R}$가 폐구간 $[a, b]$에서 연속이고 증가[감소]하면, $f$의 역함수 $f^{-1}: f([a, b]) \to \mathbb{R}$가 존재하여 $f^{-1}$은 $f([a, b])$ 위에서 연속이고 증가[감소]한다.
+
+
+
+\subsection{\fontsize{11.5}{13}\selectfont{
+함수의 평등연속성을 정의, 연속성과의 차이점 및 관계, 평등연속함수의 성질들을 다룬다.}}
+
+
+\subsection*{\textmd{3.5.1 평등연속의 정의}}
+
+$E$가 실수의 집합 $\mathbb{R}$의 부분집합이고 함수 $f: E \to \mathbb{R}$이 
+임의의 $\epsilon > 0$에 대하여, 이에 대응하는 적당한 $\delta = \delta(\epsilon) > 0$이 존재하여
+\[
+\left| x - y \right| < \delta, \quad x, y \in E \quad \Rightarrow \quad \left| f(x) - f(y) \right| < \epsilon
+\]
+를 만족하면, $f$는 $E$ 위에서 평등연속(uniformly continuous on $E$)이라고 한다.
+
+\subsection*{\textmd{3.5.2 cpt -(conti)--\textgreater (uniform conti)}}
+
+$K$가 실수의 집합 $\mathbb{R}$의 컴팩트 부분집합일 때, 함수 $f: K \to \mathbb{R}$가 연속이면 $f$는 $K$ 위에서 평등연속이다.
+
+\subsection*{\textmd{3.5.3 cauchy -(uniform conti)--\textgreater cauchy [수열의 코시성은 평등연속함수에 의해 보존되는 성질이다]}}
+
+$E$가 실수의 집합 $\mathbb{R}$의 부분집합이고, 함수 $f: E \to \mathbb{R}$가 평등연속이라고 하자. $\langle x_n \rangle$이 $E$에서의 임의의 코시 수열이면,
+수열 $\langle x_n \rangle$에 대응한 수열 $\langle f(x_n) \rangle$도 코시 수열이다.
+
+\subsection{\fontsize{11.5}{13}\selectfont{구간 위에서 정의된 단조함수의 불연속점들의 집합은 가산임을 보인다.}}
+
+
+\subsection*{\textmd{3.6.1 좌극한/우극한의 정의}}
+
+$E$를 실수의 집합 $\mathbb{R}$의 부분집합이라 하고, 실수 $c$를 $E$의 집적점이라고 하자.
+함수 $f: E \to \mathbb{R}$에 있어서, 적당한 실수 $L$이 존재하여 
+임의의 $\epsilon > 0$에 대하여 이에 대응하는 적당한 $\delta > 0$이 존재해서
+\begin{itemize}
+    \item[(i)] $(c, c + \delta) \cap E \neq \emptyset$ [$(c - \delta, c) \cap E \neq \emptyset$]
+    \item[(ii)] $c < x < c + \delta$, $x \in E$ [$c - \delta < x < c$, $x \in E$]이면 반드시 $\left| f(x) - L \right| < \epsilon$
+\end{itemize}
+를 만족하면, 실수 $L$을 점 $c$에서의 $f$의 우극한값[좌극한값]이라고 한다.
+
+\subsection*{\textmd{3.6.2 함수의 우극한과 동치인 명제}}
+
+$E$를 실수의 집합 $\mathbb{R}$의 부분집합이라 하고, 실수 $c$를 $E$의 집적점이라고 하자.
+함수 $f: E \to \mathbb{R}$에 있어서 TFAE:
+\begin{itemize}
+    \item[(a)] $\lim_{x \to c^+} f(x) = f(c^+)$
+    \item[(b)] 점 $c$에 수렴하는 $E$에서의 임의의 수열 $\langle x_n \rangle$ (단, $x_n > c$, $n \in \mathbb{N}$)에 대하여
+    수열 $\langle f(x_n) \rangle$은 $f(c^+)$로 수렴한다.
+\end{itemize}
+
+\subsection*{\textmd{3.6.3 불연속점의 종류}}
+
+함수 $f: (a, b) \to \mathbb{R}$가 점 $x \in (a, b)$에서 불연속이라고 할 때, $f(x^+)$와 $f(x^-)$가 각각 존재하면,
+점 $x$를 $f$의 제1종 불연속점(the discontinuous point of the first kind)이라 하고 한편, 
+$f(x^+)$ 또는 $f(x^-)$가 존재하지 않으면 점 $x$를 $f$의 제2종 불연속점(the discontinuous point of the second kind)이라고 한다.
+
+\subsection*{\textmd{3.6.4 함수의 불연속점 집합의 크기}}
+
+$(a, b) \xrightarrow{\text{monotone}} \mathbb{R}$: $f$의 불연속점 집합은 가산 집합이다.
+
+\subsection{\fontsize{11.5}{13}\selectfont{연속함수열의 수렴 정도에 따른 극한함수의 연속성}}
+
+\subsection*{\textmd{3.7.1 \( \{ f_n \} \)의 연속성과 평등수렴}} 
+\begin{itemize}
+    \item \( \{ f_n \} \)이 연속 함수열이고 \( f_n \to f \) (평등수렴)이라면, \( f \)는 연속이다.
+    \item 즉, 극한 연산 \( \lim_{x \to c} \)와 \( \lim_{n \to \infty} \)를 교환할 수 있다.
+    \item 연속함수공간은 점별수렴에 대해 닫혀있지 않지만, 평등수렴에 대해서는 닫혀 있다. (cf. 4.6.2)
+\end{itemize}
+
+\subsection*{\textmd{3.7.2 거듭제곱급수와 그 성질}} 
+\begin{itemize}
+    \item 거듭제곱급수 \( \sum a_n x^n \)이 수렴구간 \( (-R, R) \) (\( R > 0 \)) 위에서 함수 \( f \)에 수렴하면, \( f \)는 \( (-R, R) \) 위에서 연속이다.
+\end{itemize}
+
+\subsection{\fontsize{11.5}{13}\selectfont{해석학에서 다루는 중요한 문제 중의 하나는 주어진 함수를 보다 다루기 쉬운 초등함수로 근사시킬 수 있는가 하는 문제이다.}}
+
+\subsection*{\textmd{3.8.1 평등근사의 개념}}
+\begin{itemize}
+    \item \( E \)를 실수 집합 \( \mathbb{R} \)의 부분집합이라 하고, \( \mathcal{F} \)를 함수 \( g: E \to \mathbb{R} \)들로 이루어진 한 집합이라고 하자.
+    \item 함수 \( f: E \to \mathbb{R} \)에 대하여, 임의의 \( \epsilon > 0 \)에 대해 적당한 \( g_{\epsilon} \in \mathcal{F} \)가 존재하여 모든 \( x \in E \)에 대하여 \[ |f(x) - g_{\epsilon}(x)| < \epsilon \]을 만족하면, 함수 \( f \)를 \( E \) 위에서 \( \mathcal{F} \)에 속하는 함수로서 평등근사(uniform approximation) 시킬 수 있다고 한다.
+\end{itemize}
+
+\subsection*{\textmd{3.8.2 계단함수의 정의}}
+\begin{itemize}
+    \item 함수 \( f: [a,b] \to \mathbb{R} \)가 \([a,b]\)의 적당한 분할 \( P = \{x_0, x_1, \dots, x_n\} \)과 실수 \( w_1, w_2, \dots, w_n \)이 존재하여 \[ f(x) = w_i, \quad x_{i-1} < x < x_i \]를 만족하면, \( f \)를 \([a,b]\) 위에서 정의된 계단함수(step function)라고 한다.
+\end{itemize}
+
+\subsection*{\textmd{3.8.3 Weierstrass 근사 정리}}
+\begin{itemize}
+    \item 함수 \( f: [a,b] \to \mathbb{R} \)가 연속이면, \( f \)를 \([a,b]\) 위에서 다항함수로 평등근사시킬 수 있다.
+\end{itemize}
+
+
+
+
+
+\setcounter{section}{3}
+
+\section{미분가능 함수}
+함수의 미분가능성, 평균값 정리, 로피탈법칙, 테일러 정리, 거듭제곱급수 전개, 극한함수의 미분가능성
+
+
+\subsection{\fontsize{11.5}{13}\selectfont{함수의 극한의 개념은 집적점에서 출발한다.}}
+
+\subsection*{\textmd{4.1.1 미분가능의 정의; 미분가능성은 국소적(local) 성질}} 
+\begin{itemize}
+    \item 함수 \( f: [a,b] \to \mathbb{R} \)에 대해, 점 \( c \in [a,b] \)에 대해 적당한 \( L \in \mathbb{R} \)이 존재하여,
+    \item 임의의 \( \epsilon > 0 \)에 대해, 적당한 \( \delta > 0 \)이 존재하여
+    \[ 0 < |x - c| < \delta, \quad x \in [a,b] \Rightarrow \left| \frac{f(x) - f(c)}{x - c} - L \right| < \epsilon \]
+    \item 를 만족하면 \( f \)는 점 \( x = c \)에서 미분가능하다고 한다.
+\end{itemize}
+
+\subsection*{\textmd{4.1.2 미분가능성의 정의역 확장}} 
+\begin{itemize}
+    \item 함수의 미분가능성은 정의역이 구간이 아닌 경우에도 집적점이면 정의할 수 있다.
+\end{itemize}
+
+\subsection*{\textmd{4.1.3 미분가능하면 연속이다}} 
+\begin{itemize}
+    \item 함수가 어떤 점에서 미분가능하면, 해당 점에서 연속이다.
+\end{itemize}
+
+\subsection*{\textmd{4.1.4 미분가능함수의 도함수와 점별수렴}} 
+\begin{itemize}
+    \item 미분가능한 함수의 도함수는 적당한 연속함수열의 점별수렴 극한함수이다.
+    \item 구체적으로, \[ g_n(x) = n \{ f(x + \frac{1}{n}) - f(x) \} \]로 둘 수 있다.
+\end{itemize}
+
+\subsection*{\textmd{4.1.5 미분가능할 필요충분조건}} 
+\begin{itemize}
+    \item 적당한 실수 \( L \)과 함수 \( n_f: [a,b] \setminus \{c\} \to \mathbb{R} \)가 존재하여
+    \[ \lim_{x \to c} n_f(x) = 0 \]
+    \item 모든 \( x \in [a,b] \setminus \{c\} \)에 대해
+    \[ f(x) = f(c) + L(x - c) + n_f(x)(x - c) \]
+    \item 를 만족하는 것이 필요충분조건이다. 이때, \( L = f'(c) \)이다.
+\end{itemize}
+
+\subsection*{\textmd{4.1.6 미분계수가 양수일 때 증가성}} 
+\begin{itemize}
+    \item 함수 \( f: [a,b] \to \mathbb{R} \)가 점 \( c \in [a,b] \)에서 미분가능하며 \( f'(c) > 0 \)이라고 하자.
+    \item 그러면 적당한 \( \delta > 0 \)가 존재하여 모든 \( x_1, x_2 \in [a,b] \)가 \( |x_i - c| < \delta \)를 만족할 때,
+    \[ x_1 < c < x_2 \Rightarrow f(x_1) < f(c) < f(x_2) \]
+    \item 그러나, 이는 점 근방의 특정 구간 전체에서 증가함을 의미하는 것은 아니다.
+\end{itemize}
+
+
+\subsection{\fontsize{11.5}{13}\selectfont{구간 위에서 정의된 미분가능한 함수들의 집합은 벡터공간이다. (연속함수 공간은 실수의 부분집합에 대한 것이었으나 미분가능 함수공간은 구간에 대한 것임을 알자)}}
+
+\subsection{\fontsize{11.5}{13}\selectfont{평균값 정리, 그로부터 유도되는 미분가능함수에 대한 성질들}}
+
+\subsection*{\textmd{4.3.1 코시의 평균값 정리 (general)}}
+\begin{itemize}
+    \item 함수 \( f,g: [a,b]\to \mathbb{R} \)가 \([a,b]\)에서 연속이고 \((a,b)\)에서 미분가능하면 다음을 만족시키는 점 \( x_0 \in (a,b) \)가 존재한다.
+    \item \[ (f(b)-f(a))g'(x_0) = (g(b)-g(a))f'(x_0) \]
+\end{itemize}
+
+\subsection*{\textmd{4.3.2 미분계수가 항등적으로 0인 구간에서 상수함수이다.}}
+
+\subsection*{\textmd{4.3.3 Lipschitz 조건}}
+\begin{itemize}
+    \item 함수 \( f:[a,b]\to \mathbb{R} \)가 다음을 만족할 때 \( f \)는 립시츠(Lipschitz) 조건을 만족한다고 한다.
+    \item 모든 \( x_1,x_2 \in [a,b] \)에 대하여
+    \item \[ |f(x_1)-f(x_2)| \leq K |x_1-x_2| \]을 만족시키는 적당한 양의 실수 \( K \)가 존재한다.
+\end{itemize}
+
+\subsection*{\textmd{4.3.4 Darboux 정리}}
+\begin{itemize}
+    \item 함수 \( f:[a,b]\to \mathbb{R} \)가 \([a,b]\)에서 미분가능하고 \( f'(a) \neq f'(b) \)이면,
+    \item \( f'(a) \)와 \( f'(b) \) 사이의 임의의 값 \( k \)에 대하여 \( f'(x_0)=k \)를 만족시키는 점 \( x_0 \in (a,b) \)가 존재한다.
+\end{itemize}
+
+\subsection{\fontsize{11.5}{13}\selectfont{4.4.1 로피탈 법칙 (0/0꼴, \(\infty/\infty\)꼴 for 닫힌구간, 비유계 폐구간)}}
+
+\[
+\lim \frac{f(x)}{g(x)} = \lim \frac{f'(x)}{g'(x)}
+\]
+
+
+\subsection{\fontsize{11.5}{13}\selectfont{다항함수는 임의의 실수에 대응되는 함숫값을 쉽게 얻을 수 있는 장점을 가진 초등함수이다. 이러한 이유에서 다항함수는 어떤 다른 함수의 근사함수로 많이 이용되고 있는 것이다. 다항함수로의 근사가 가능한 함수를 해석함수라 부르며, 테일러 급수를 통해 근사가 이루어진다.}}
+
+\subsection*{\textmd{4.5.1 \(C^n\)급 함수, \(C^\infty\)급 함수}}
+함수 \(f\)가 \(n\)차 도함수 \(f^{(n)}\)을 가지며, \(f^{(n)}\)이 연속이면 \(f\)를 \(C^n\)급 함수(function of class \(C^n\))라고 한다.
+모든 자연수 \(n\)에 대하여 \(f^{(n)}\)이 미분가능하면, \(f\)를 \(C^\infty\)급 함수(function of class \(C^\infty\))라고 한다.
+또한, 미분가능성은 일반적으로 구간에서 정의되며, 예를 들어 구간 \([a,b]\)에서의 \(n\)급 함수들의 모임을 \(C^n[a,b]\)로 나타낸다.
+
+\(C^n\)급 함수와 \(C^\infty\)급 함수의 공간은 벡터 공간이다.
+
+\subsection*{\textmd{4.5.2 해석적 함수(analytic function)의 정의 (taylor series)}}
+구간 \(I \subset \mathbb{R}\)에서 함수 \(f: I \to \mathbb{R}\)가 \(f \in C^\infty(I)\)이며, \(a \in I\)라고 하자.
+모든 \(x \in I\)에 대하여, 급수
+\[
+\sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} (x-a)^n
+\]
+를 \(f\)의 구간 \(I\)에서의 테일러 급수라고 한다.
+
+구간 \(I\)에서 함수 \(f\)가 해석적 함수(analytic function)임은 \(f \in C^\infty(I)\)이고, 점 \(a \in I\)에서의 테일러 급수가 \(I\) 위에서 \(f\)에 수렴하는 것이다.
+
+
+\subsection{\fontsize{11.5}{13}\selectfont{다음의 두 질문을 고려하자: \\ 
+(1)구간에서 정의된 미분가능함수열의 극한함수 f의 \\ 미분가능성? \\
+(2)극한함수 f가 미분가능하면 도함수열의 극한함수는 f’인가?}}
+
+\subsection*{\textmd{4.6.1 미분가능함수공간의 닫힘성}}
+미분가능 함수공간은 점별수렴이나 평등수렴에 대해 닫혀 있지 않다.
+
+\subsection*{\textmd{4.6.2 도함수열의 평등수렴과 수렴성}}
+어떤 점에 대해 함수열이 수렴하고, 도함수열이 어떤 함수에 평등수렴할 때 두 조건을 만족한다.
+(참고: 3.7.1 연속함수공간은 평등수렴에 대해 닫혀 있다.)
+
+구간 \([a,b]\) 위에서 정의된 미분가능 함수열 \(\{f_n\}\)이 다음 조건을 만족한다고 하자.
+\begin{itemize}
+    \item[(i)] 어떤 점 \(x_0 \in [a,b]\)에 대해 \(\{f_n(x_0)\}\)가 수렴한다.
+    \item[(ii)] 함수열 \(\{f_n'\}\)이 \([a,b]\) 위에서 어떤 함수에 평등수렴한다.
+\end{itemize}
+그렇다면 다음이 성립한다.
+\begin{itemize}
+    \item[(a)] \(\{f_n\}\)은 \([a,b]\) 위에서 어떤 함수 \(f: [a,b] \to \mathbb{R}\)에 평등수렴한다.
+    \item[(b)] \(f \in \mathcal{D}[a,b]\)이며, 모든 점 \(x \in [a,b]\)에서 \(\lim\limits_{n \to \infty} f_n'(x) = f'(x)\)이다.
+\end{itemize}
+
+요약: 위 정리에서 극한 기호(\(\lim\limits_{n \to \infty}\))와 도함수 기호(\(\frac{d}{dx}\))는 서로 교환 가능하다.
+
+
+
+
+
+
+
+\setcounter{section}{4}
+
+\section{적분가능 함수}
+리만 적분의 정의에 있어서 중요한 점은 실직선의 순서구조에 그 기반을 두고 있다는 것이다. 리만 적분의 정의 3가지, 미적분학 기본정리, 특이적분, 적분가능함수열
+
+
+\subsection{\fontsize{11.5}{13}\selectfont{리만적분의 정의(1)}}
+
+함수 \( f: [a, b] \to \mathbb{R} \)가 유계라고 하자. \( [a, b] \)의 임의의 분할 \( P = \{ x_0, x_1, \dots, x_n \} \)에 대하여
+\( P \)의 각 소구간 \( I_k \)에서 
+\[
+M(f, I_k) = \sup\{ f(x) : x \in I_k \}, \quad m(f, I_k) = \inf\{ f(x) : x \in I_k \}
+\]
+라고 놓을 때, 다음과 같이 정의된 두 실수
+\[
+U(f, P) = \sum_{k=1}^{n} M(f, I_k) \Delta x_k, \quad L(f, P) = \sum_{k=1}^{n} m(f, I_k) \Delta x_k
+\]
+를 각각 분할 \( P \)에 대한 \( f \)의 리만 상합(upper Riemann sum), 리만 하합(lower Riemann sum)이라고 한다.
+
+
+\( \mathbb{R} \)의 완비성 공리에 의하여 두 실수
+\[
+\sup\{ L(f, P) : P \in \mathcal{P}[a, b] \}, \quad \inf\{ U(f, P) : P \in \mathcal{P}[a, b] \}
+\]
+는 항상 존재한다. 이들의 값을 각각 \( f \)의 리만 하적분(lower Riemann integral), 리만 상적분(upper Riemann integral)이라고 한다.
+
+
+특징: 유계폐구간에서 정의된 유계함수를 전제로 리만 상합/리만 하합을 이용
+
+
+\subsection*{5.2.1 리만적분가능성 테스트}
+
+함수 \( f: [a, b] \to \mathbb{R} \)가 유계라고 하자. \( f \)가 \( [a, b] \) 위에서 \({R} \)-적분 가능할 필요충분조건은 임의의 \( \epsilon > 0 \)에 대하여, 이에 대응하는 적당한 \( [a, b] \)의 분할 \( P_\epsilon \)이 존재해서 다음이 성립하는 것이다:
+\[
+U(f, P_\epsilon) - L(f, P_\epsilon) < \epsilon
+\]
+
+\subsection*{5.2.2 유계 폐구간에서 정의된 연속함수 / 단조함수는 리만적분가능하다}
+
+\subsection*{5.2.3 리만적분의 정의(2)}
+
+함수 \( f: [a, b] \to \mathbb{R} \)가 유계일 때, 임의의 점 \( t_k \in [x_{k-1}, x_k] \)에 대하여, 합
+\[
+R(f, P) = \sum_{k=1}^{n} f(t_k) \Delta x_k
+\]
+를 \( [a, b] \)의 분할 \( P \)에 대한 \( f \)의 리만 합(Riemann sum)이라고 한다.
+
+또 적당한 실수 \( I \)가 존재하여 임의의 \( \epsilon > 0 \)에 대하여 이에 대응하는 적당한 \( \delta > 0 \)가 존재해서 \( \|P\| < \delta \)인 모든 분할 \( P \)에 대하여
+\[
+| R(f, P) - I | < \epsilon
+\]
+을 만족하면, \( I \)를 \( \|P\| \to 0 \)일 때의 리만 합의 극한이라고 하고, 이를 \( f \)의 구간 \( [a, b] \)에서의 리만적분으로 정의한다.
+
+\textbf{특징:} 리만합의 극한으로 정의.
+
+\subsection*{5.2.4 \( \mu(D) = 0 \)의 정의}
+
+\( A \)를 실수의 집합 \( \mathbb{R} \)의 부분집합이라고 하자. 임의의 \( \epsilon > 0 \)에 대하여 가산개의 소구간 \( (a_n, b_n) \)이 존재하여
+\begin{itemize}
+    \item \( A \subseteq \bigcup_{n=1}^{\infty} (a_n, b_n) \)
+    \item \( \sum_{n=1}^{\infty} (b_n - a_n) < \epsilon \)
+\end{itemize}
+을 만족할 때, 집합 \( A \)를 측도 0인 집합이라고 한다.
+
+\subsection*{5.2.5 리만적분의 정의(3)}
+
+함수 \( f: [a, b] \to \mathbb{R} \)가 유계함수라 하자. 함수 \( f \)가 리만 적분가능할 필요충분조건은 \( f \)의 불연속점의 집합 \( D \)가 측도 0인 집합인 것이다.
+
+\textbf{특징:} \( \mu(D) = 0 \)
+
+\subsection*{5.3.1 구간에서 정의된 적분가능 함수 공간은 벡터공간이다}
+
+\subsection*{5.3.2 절댓값 적분 부등식}
+
+절댓값 적분 부등식은 삼각부등식의 일반화로 볼 수 있으며 이용도가 매우 높다. (cf. 2.4.2: 역은 성립하지 않다.)\\  
+함수 \( f: [a, b] \to \mathbb{R} \)가 적분 가능하면
+\begin{itemize}
+    \item \( f^+ \), \( f^- \)도 적분 가능하고
+    \item \( |f| \)도 적분 가능하며, 또한 다음이 성립한다:
+\end{itemize}
+\[
+\left| \int_a^b f \, dx \right| \leq \int_a^b |f| \, dx
+\]
+
+\subsection*{5.3.3 구간에서의 적분은 one-form[linear form]이다}
+
+\[
+\int_a^b (f + g) = \int_a^b f + \int_a^b g
+\]
+\[
+\int_a^b (\lambda f) = \lambda \int_a^b f, \quad \lambda \in \mathbb{R}
+\]
+
+\subsection*{5.3.4 적분가능 함수의 곱함수도 적분 가능하다}
+
+함수 \( f, g \in \mathcal{R}[a, b] \)이면 \( f \)와 \( g \)의 곱함수 \( fg \)도 적분 가능하다.
+
+
+\setcounter{subsection}{3}
+\subsection{\fontsize{11.5}{13}\selectfont{리만적분과 도함수 사이의 관계를 설명하여 주는 미적분학의 기본정리}}
+
+
+\subsection*{5.4.1 미적분학의 기본정리 Type 1}
+
+함수 \( f \in \mathcal{R}[a, b] \)에 대해 함수 \( F: [a, b] \to \mathbb{R} \)을
+\[
+F(x) = \int_a^x f(t) \, dt
+\]
+로 정의하면, \( F \)는 다음의 성질을 갖는다:
+\begin{itemize}
+    \item (a) \( F \)는 \( [a, b] \) 위에서 평등 연속이다.
+    \item (b) \( f \)가 \( x_0 \in [a, b] \)에서 연속이면, \( F \)는 점 \( x_0 \)에서 미분 가능하고 \( F'(x_0) = f(x_0) \)이다.
+\end{itemize}
+
+\subsection*{5.4.2 미적분학의 기본정리 Type 2}
+
+함수 \( f: [a, b] \to \mathbb{R} \)가 적분 가능하고, 또한 적당한 함수 \( F: [a, b] \to \mathbb{R} \)가 존재하여 \( F \)가 \( [a, b] \) 위에서 미분 가능하고 \( F' = f \)이면, 다음이 성립한다:
+\[
+\int_a^b f(x) \, dx = F(b) - F(a)
+\]
+
+\subsection*{5.4.3 평균값 정리 (적분 VER)}
+
+함수 \( f: [a, b] \to \mathbb{R} \)가 연속이면, 다음을 만족시키는 점 \( x_0 \in (a, b) \)가 존재한다:
+\[
+\frac{1}{b - a} \int_a^b f \, dx = f(x_0)
+\]
+
+
+\subsection*{5.5.1 특이적분 개념 (4가지 유형) - 유계 폐구간 domain 조건, 유계 함수 조건을 만족하지 않는 함수의 적분}
+
+\begin{enumerate}
+    \item 함수 \( f: (a, b] \to \mathbb{R} \)가 임의의 \( c \in (a, b] \)에 대하여, 구간 \( [c, b] \) 위에서 \( {R} \)-적분 가능할 때, 극한 
+    \[
+    \lim_{c \to a^+} \int_c^b f \, dx
+    \]
+    가 존재하면 \( f \)는 \( (a, b] \) 위에서 특이적분 가능하다고 한다.
+    
+    \item \( c \in (a, b) \)이고 \( E = [a, b] \setminus \{c\} \)일 때, 함수 \( f: E \to \mathbb{R} \)가 구간 \( [a, c) \)와 \( (c, b] \) 위에서 각각 특이적분 가능하면, 
+    \( f \)는 \( [a, b] \) 위에서 특이적분 가능하다고 하고, 극한값 
+    \[
+    \int_a^b f \, dx = \lim_{\epsilon \to 0^+} \int_a^{c - \epsilon} f \, dx + \lim_{\delta \to 0^+} \int_{c + \delta}^b f \, dx
+    \]
+    를 \( [a, b] \) 위에서의 \( f \)의 특이적분이라고 한다.
+    
+    \item 함수 \( f: [a, \infty) \to \mathbb{R} \)가 임의의 \( b \in (a, \infty) \)에 대해서 구간 \( [a, b] \) 위에서 \({R} \)-적분 가능할 때, 극한
+    \[
+    \lim_{b \to \infty} \int_a^b f \, dx
+    \]
+    가 존재하면 \( f \)는 \( [a, \infty) \) 위에서 특이적분 가능하다고 말한다.
+    
+    \item \( f: (-\infty, \infty) \to \mathbb{R} \)가 임의의 \( a \in (-\infty, \infty) \)에 대하여 \( [a, \infty) \)와 \( (-\infty, a] \) 위에서 각각 특이적분 가능할 때, \( f \)는 \( (-\infty, \infty) \) 위에서 특이적분 가능하다고 말한다.
+\end{enumerate}
+
+\subsection*{5.5.2 \([a, \infty)\)에서의 비교 판정법, 극한 비교 판정법}
+
+\begin{enumerate}
+    \item 함수 \( f, g \in \mathcal{R}[a, \infty) \)가 모든 \( x \in [a, \infty) \)에 대하여 \( 0 \leq f \leq g \)라고 하자. \( [a, \infty) \) 위에서의 \( g \)의 무한 적분이 존재하면, \( [a, \infty) \) 위에서의 \( f \)의 무한 적분도 존재하며, 다음이 성립한다:
+    \[
+    0 \leq \int_a^\infty f \, dx \leq \int_a^\infty g \, dx
+    \]
+    
+    \item 함수 \( f, g \in \mathcal{R}[a, \infty) \)가 모든 \( x \in [a, \infty) \)에 대하여 \( 0 \leq f \leq g \)라고 하자. 임의의 \( c \in (a, \infty) \)에 대하여 \( f, g \)가 \( [a, c] \) 위에서 \({R} \)-적분 가능하고, 또한
+    \[
+    \lim_{x \to \infty} \frac{f(x)}{g(x)} \neq 0
+    \]
+    이면, \( f \)와 \( g \)의 무한 적분의 존재성은 서로 동치이다.
+\end{enumerate}
+
+\subsection*{5.5.3 \([a, \infty)\)에서의 절대 수렴}
+
+함수 \( f: [a, \infty) \to \mathbb{R} \)가 임의의 \( c \in (a, \infty) \)에 대하여 구간 \( [a, c] \) 위에서 \({R} \)-적분 가능하고, 무한 적분
+\[
+\int_a^\infty |f| \, dx
+\]
+가 존재할 때, \( f \)의 무한 적분
+\[
+\int_a^\infty f \, dx
+\]
+가 절대 수렴(absolutely convergent)한다고 말한다.
+
+\subsection*{5.5.4 \([a, \infty)\)의 특이적분에서의 절댓값 적분 부등식: cf. 5.3.2}
+
+함수 \( f: [a, \infty) \to \mathbb{R} \)가 \( [a, \infty) \) 위에서 절대 적분 가능하면, \( [a, \infty) \) 위에서의 \( f \)의 무한 적분 \( \int_a^\infty f \, dx \)가 존재하고, 다음이 성립한다:
+\[
+\left| \int_a^\infty f \, dx \right| \leq \int_a^\infty |f| \, dx
+\]
+
+\setcounter{subsection}{5}
+\subsection{\fontsize{11.5}{13}\selectfont{다음의 두 질문을 고려하자: \\ 
+(1)구간에서 정의된 적분가능함수열의 극한함수 f의 \\적분가능성?\\
+(2)극한함수 f가 적분가능하면 극한기호와 적분기호는 \\교환가능한가?}}
+
+\subsection*{5.6.1 평등 수렴하면 두 질문이 성립한다.}
+
+\subsection*{5.6.2 theorem}
+
+함수 \( f: [0, 1] \to \mathbb{R} \)가 연속이고 모든 \( n = 0, 1, 2, \dots \)에 대하여
+\[
+\int_0^1 f(x) x^n \, dx = 0
+\]
+이면, 구간 \( [0, 1] \) 위에서 \( f \equiv 0 \)이다.
+
+\subsection*{5.6.3}
+
+\begin{enumerate}
+    \item 두 질문이 성립한다고 해서 평등 수렴하지는 않는다. (역은 성립하지 않는다.)
+    \item 점별 수렴하는 경우, 두 질문이 성립하지 않는다. \\
+    즉, 유계 폐구간 상 적분 가능 함수 공간은 점별 수렴에 관해서는 닫혀 있지 않지만 평등 수렴에 관해서는 닫혀 있다.
+    \item \( [a, \infty) \)에서 정의된 함수의 경우, 평등 수렴하여도 두 질문을 만족하지 않는다.
+\end{enumerate}
+\end{document}
